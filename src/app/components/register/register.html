@@ -1,0 +1,30 @@
+<form [formGroup]="user" (submit)="submit()">
+  <div class="form-scroll-container">
+    
+    <div class="form-row">
+      <input formControlName="firstName" type="text" placeholder="First Name">
+      <input formControlName="lastName" type="text" placeholder="Last Name">
+    </div>
+
+    <div class="form-row">
+      <input formControlName="age" type="number" placeholder="Age">
+      <select formControlName="gender">
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+      </select>
+    </div>
+
+    <input formControlName="email" type="email" placeholder="Email Address">
+    <input formControlName="password" type="password" placeholder="Password (min 8 chars)">
+    
+    <input formControlName="phone" type="text" placeholder="Phone Number">
+    <input formControlName="address" type="text" placeholder="Address">
+    
+    <div class="form-row">
+      <input formControlName="zipcode" type="text" placeholder="Zip Code">
+      <input formControlName="avatar" type="text" placeholder="Avatar URL">
+    </div>
+
+    <button type="submit" [disabled]="user.invalid">Create Account</button>
+  </div>
+</form>

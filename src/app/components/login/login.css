@@ -1,0 +1,92 @@
+/* Переносим фон на тег самого компонента, чтобы залить весь экран */
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  font-family: system-ui, -apple-system, sans-serif;
+  z-index: 99999;
+
+  /* Переменные для стилизации */
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+/* Делаем форму красивой стеклянной карточкой по центру */
+form {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Красивые темные инпуты */
+input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 15px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Свечение инпутов при клике */
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* Делаем плейсхолдеры мягкого цвета */
+input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Яркая интерактивная кнопка */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+/* Эффект наведения на кнопку */
+button[type="submit"]:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+button[type="submit"]:active {
+  transform: translateY(1px);
+}

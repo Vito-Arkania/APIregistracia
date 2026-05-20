@@ -1,0 +1,15 @@
+<header>
+    <nav>
+        <a routerLink="/">Home</a>
+
+        @if(auth.isLoggedIn()){
+         <a routerLink="profile">Profile</a>
+         <button>Log out</button>
+        }
+        @else {
+            <a routerLink="login">Log In</a>
+            <a routerLink="register">Register</a>
+        }
+
+    </nav>
+</header>
