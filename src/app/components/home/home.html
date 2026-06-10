@@ -1,0 +1,179 @@
+<section class="hero-section">
+  <div class="hero-container">
+    <div class="hero-text">
+      <p class="discount">Get 80% discount</p>
+      <h1>Fresh<br>Bakery<br>Foods.</h1>
+      <button class="shop-now">Shop Now →</button>
+    </div>
+    
+    <div class="hero-image">
+      <img src="https://cdn.prod.website-files.com/6356157f39e4e52b89cf4553/635a1b926f2b1e17682dfd55_hero-image.png" alt="Bakery Basket">
+    </div>
+  </div>
+</section>
+
+<section class="card-section">
+  <div class="card-div">
+    <div class="cards">
+      <div class="card-1" onclick="">
+        <img src="https://cdn.prod.website-files.com/63932e3ecea6fbf12060781b/63de229f01f036d856ba7b10_catagories-4.png" alt="">
+        <p>Switch Roll</p>
+      </div>
+      <div class="card-2" onclick="">
+        <img src="https://cdn.prod.website-files.com/63932e3ecea6fbf12060781b/63de227b1ca2f56d5b07d6e1_catagories-3.png" alt="">
+        <p>Cup Cake</p>
+      </div>
+      <div class="card-3" onclick="">
+        <img src="https://cdn.prod.website-files.com/63932e3ecea6fbf12060781b/63de226b1693d1be7ce6de78_catagories-2.png" alt="">
+        <p>Pastry</p>
+      </div>
+      <div class="card-4" onclick="">
+        <img src="https://cdn.prod.website-files.com/63932e3ecea6fbf12060781b/63de224a371ddd3f8703d5d1_catagories-1.png" alt="">
+        <p>Cookies</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="features">
+  <div class="features__container">
+
+    <div class="feature-item scale-up-center">
+      <div class="feature-icon">
+        <div class="feature-icon-inner">
+          <img src="https://cdn.prod.website-files.com/6356157f39e4e52b89cf4553/63932b79a7272920b3c372e8_promo-icon-1.svg" alt="delivery">
+        </div>
+      </div>
+      <div class="feature-content">
+        <h3>Free Delivery</h3>
+        <p>Lorem ipsum simply dummy text the printing type setting.</p>
+      </div>
+    </div>
+
+    <div class="feature-item scale-up-center">
+      <div class="feature-icon">
+        <div class="feature-icon-inner">
+          <img src="https://cdn.prod.website-files.com/6356157f39e4e52b89cf4553/63932b79059d35050e1f17c6_promo-icon-2.svg" alt="support">
+        </div>
+      </div>
+      <div class="feature-content">
+        <h3>24/07 Support</h3>
+        <p>Lorem ipsum simply dummy text the printing type setting.</p>
+      </div>
+    </div>
+
+    <div class="feature-item scale-up-center">
+      <div class="feature-icon">
+        <div class="feature-icon-inner">
+          <img src="https://cdn.prod.website-files.com/6356157f39e4e52b89cf4553/63932b79b2d1c90f38586270_promo-icon-3.svg" alt="payment">
+        </div>
+      </div>
+      <div class="feature-content">
+        <h3>Secure Payment</h3>
+        <p>Lorem ipsum simply dummy text the printing type setting.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="products-section">
+  
+  <div class="section-title">
+    <span class="badge">LATEST PRODUCTS</span>
+    <h2>Special Bakery Products</h2>
+  </div>
+
+  <div class="products-grid">
+    <ng-container *ngIf="cookies && cookies.length > 0; else loading">
+      
+      <article *ngFor="let item of cookies" class="cookie-card">
+        <img [src]="item.img" [alt]="item.name" class="product-image">
+        
+        <div class="product-info">
+          <h3 class="product-name">{{ item.name }}</h3>
+          <p class="product-price">
+            <span class="price-now">${{ item.price }} USD</span>
+            <span class="price-old">{{ item['old-price'] }}</span>
+          </p>
+        </div>
+
+        <button class="add-to-cart-btn" type="button" (click)="addToCart(item)">Add to Cart</button>
+      </article>
+
+    </ng-container>
+
+    <ng-template #loading>
+      <div class="loading-state">
+        <p>Loading tasty cookies...</p>
+      </div>
+    </ng-template>
+  </div>
+
+</section>
+
+
+
+<section class="offer-section">
+   <div class="offer-container">
+      <div class="offer-image-wrapper">
+         <img src="https://cdn.prod.website-files.com/6356157f39e4e52b89cf4553/63df945fd3e9be17927de606_banner-image.png" alt="Bread">
+         
+         <div class="offer-badge">
+            <div class="badge-text">80%<br>Off</div>
+         </div>
+      </div>
+      
+      <div class="offer-text">
+         <p>Offer For Customer.</p>   
+         <h3>All Products 80% Discount.</h3>
+         <button>Shop Now &rarr;</button>
+      </div>
+   </div>
+</section>
+
+<section class="carousel-section2">
+  
+  <div class="header-row2">
+    <div class="section-title2">
+      <span class="badge2">FEATURED ITEAM</span>
+      <h2>Featured Products</h2>
+    </div>
+    
+    <div class="nav-container2">
+      <button class="nav-btn2" (click)="scroll('left')">&#8592;</button>
+      <button class="nav-btn2" (click)="scroll('right')">&#8594;</button>
+    </div>
+  </div>
+
+  <div class="carousel-wrapper2">
+    <div class="products-grid2" #scrollContainer>
+      <ng-container *ngIf="cookies && cookies.length > 0; else loading">
+        <article *ngFor="let item of cookies" class="cookie-card2 anim-fade">
+          <img [src]="item.img" [alt]="item.name" class="product-image2">
+          <div class="product-info2">
+            <h3 class="product-name2">{{ item.name }}</h3>
+            <p class="product-price2">
+              <span class="price-now2">${{ item.price }} USD</span>
+              <span class="price-old2">{{ item['old-price'] }}</span>
+            </p>
+          </div>
+          <button  class="add-to-cart-btn2" type="button" (click)="addToCart(item)">Add to Cart</button>
+        </article>
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="loading-state2"><p>Loading tasty cookies...</p></div>
+  </ng-template>
+</section>
+
+
+
+
+<!-- /===========================FOOTER==============================/ -->
+

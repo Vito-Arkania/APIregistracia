@@ -1,0 +1,55 @@
+<div class="cart-page">
+  <div class="cart-left">
+    <div class="header-row">
+      <h1>Your Cart</h1>
+    </div>
+
+    <div *ngIf="cart.length === 0" class="empty">
+      <p class="empty-note">Your cart is empty.</p>
+      <a routerLink="/" class="nav-link">Continue shopping</a>
+    </div>
+
+    <div *ngIf="cart.length > 0" class="cart-items-wrapper">
+      <ul class="cart-list">
+        <li *ngFor="let item of cart; let i = index" class="cart-item">
+          <img [src]="item.img" alt="{{ item.name }}" class="cart-item-img" />
+          <div class="cart-item-info">
+            <h3>{{ item.name }}</h3>
+            <div class="prices">
+              <span class="price">${{ item.price }}</span>
+              <span class="old-price" *ngIf="item['old-price']">{{ item['old-price'] }}</span>
+            </div>
+
+            <div class="cart-item-meta">
+              <div class="qty">
+                <button class="qty-btn" (click)="changeQty(i, -1)">−</button>
+                <span class="qty-value">{{ item.qty || 1 }}</span>
+                <button class="qty-btn" (click)="changeQty(i, 1)">+</button>
+              </div>
+
+              <div class="item-subtotal">Subtotal: ${{ (item.price * (item.qty || 1)) | number:'1.2-2' }}</div>
+            </div>
+
+            <button class="remove-btn" (click)="removeItem(i)">Remove</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="cart-summary">
+    <div *ngIf="cart.length > 0" class="summary-panel">
+      <div class="summary-row"><span>Items</span><span>{{ cart.length }}</span></div>
+      <div class="summary-row"><span>Subtotal</span><span>${{ total | number:'1.2-2' }}</span></div>
+      <div class="summary-row"><span>Shipping</span><span>$0.00</span></div>
+      <div class="summary-row summary-total"><span>Total</span><span>${{ total | number:'1.2-2' }}</span></div>
+      <a routerLink="/checkout" class="checkout-btn">Checkout</a>
+      <button class="btn clear-btn" (click)="clearCart()">Clear cart</button>
+    </div>
+
+    <div *ngIf="cart.length === 0" class="summary-empty">
+      <p class="empty-note">Nothing to checkout yet.</p>
+      <a routerLink="/" class="nav-link">Continue shopping</a>
+    </div>
+  </aside>
+</div>

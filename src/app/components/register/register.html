@@ -1,30 +1,40 @@
-<form [formGroup]="user" (submit)="submit()">
-  <div class="form-scroll-container">
-    
-    <div class="form-row">
-      <input formControlName="firstName" type="text" placeholder="First Name">
-      <input formControlName="lastName" type="text" placeholder="Last Name">
-    </div>
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>Kitchen Connect</h2>
+    <p class="auth-subtitle">Create your chef profile</p>
 
-    <div class="form-row">
-      <input formControlName="age" type="number" placeholder="Age">
-      <select formControlName="gender">
-        <option value="MALE">Male</option>
-        <option value="FEMALE">Female</option>
-      </select>
-    </div>
+    <form [formGroup]="user" (ngSubmit)="submit()">
+      <div class="auth-form-container">
+        <div class="auth-form-row">
+          <input formControlName="firstName" type="text" placeholder="First Name">
+          <input formControlName="lastName" type="text" placeholder="Last Name">
+        </div>
 
-    <input formControlName="email" type="email" placeholder="Email Address">
-    <input formControlName="password" type="password" placeholder="Password (min 8 chars)">
-    
-    <input formControlName="phone" type="text" placeholder="Phone Number">
-    <input formControlName="address" type="text" placeholder="Address">
-    
-    <div class="form-row">
-      <input formControlName="zipcode" type="text" placeholder="Zip Code">
-      <input formControlName="avatar" type="text" placeholder="Avatar URL">
-    </div>
+        <div class="auth-form-row">
+          <input formControlName="age" type="number" placeholder="Age">
+          <select formControlName="gender">
+            <option value="" disabled selected>Gender</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+          </select>
+        </div>
 
-    <button type="submit" [disabled]="user.invalid">Create Account</button>
+        <input formControlName="email" type="email" placeholder="Email Address">
+        <input formControlName="password" type="password" placeholder="Password">
+        <input formControlName="phone" type="text" placeholder="Phone Number">
+        <input formControlName="address" type="text" placeholder="Address">
+        
+        <div class="auth-form-row">
+          <input formControlName="zipcode" type="text" placeholder="Zip">
+          <input formControlName="avatar" type="text" placeholder="Avatar URL">
+        </div>
+      </div>
+
+      <button type="submit" class="auth-btn">Create Account</button>
+    </form>
+
+    <p class="auth-footer">
+      Already have an account? <a routerLink="/login">Sign In</a>
+    </p>
   </div>
-</form>
+</div>

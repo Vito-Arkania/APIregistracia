@@ -1,0 +1,867 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button, input{
+    cursor: pointer;
+}
+
+img{
+    width: 100%
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  background-image: linear-gradient(rgba(248, 221, 197, 0.275), rgba(248, 221, 197, 0.275)), url('https://uploads-ssl.webflow.com/6356157f39e4e52b89cf4553/635a1a21989f0f8051a9071d_hero-bg-pattern.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 125px 20px;
+}
+
+/* Анимация текста */
+.hero-text {
+  opacity: 0;
+  animation: fadeInLeft 1s ease-out forwards;
+}
+
+.hero-text h1 { 
+    font-size: 120px;
+    color: #3d2514; 
+    line-height: 1.1; 
+    margin: 20px 0;
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.discount { 
+    color: #f29c52;
+    font-size: 34px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+ }
+
+/* Анимация корзины */
+.hero-image {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 1s ease-out 0.5s forwards;
+}
+
+.hero-image img { width: 500px; height: auto; }
+
+.shop-now {
+  background-color: #fb923c; /* Твой оранжевый цвет */
+  color: #ffffff;
+  padding: 15px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px; /* Сильное скругление */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(251, 146, 60, 0.3);
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  gap: 8px;
+  text-decoration: none;
+}
+
+/* Эффект при наведении */
+.shop-now:hover {
+  background-color: #ea7a1f; /* Чуть темнее */
+  transform: translateY(-3px); /* Кнопка слегка "подпрыгивает" */
+  box-shadow: 0 8px 20px rgba(251, 146, 60, 0.5);
+}
+
+/* Эффект нажатия */
+.shop-now:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(251, 146, 60, 0.3);
+}
+
+/* Ключевые кадры анимаций */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. ДЛЯ ПЛАНШЕТОВ И НОУТБУКОВ (до 1024px) */
+@media (max-width: 1024px) {
+  .hero-text h1 {
+    font-size: 80px; /* Уменьшаем заголовок */
+  }
+  .hero-image img {
+    width: 400px; /* Уменьшаем картинку */
+  }
+}
+
+/* 2. ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (до 768px) */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: auto; /* Позволяем секции сжиматься */
+    padding: 60px 0;
+  }
+
+  .hero-container {
+    flex-direction: column-reverse; /* Ставим элементы друг под другом */
+    text-align: center; /* Центрируем текст */
+  }
+
+  .hero-text h1 {
+    font-size: 50px; /* Сильно уменьшаем заголовок для мобилок */
+    margin: 15px 0;
+  }
+
+  .hero-image {
+    margin-top: 30px; /* Добавляем отступ между текстом и фото */
+    order: -1; /* Переносим картинку выше текста */
+  }
+
+  .hero-image img {
+    width: 300px; /* Компактный размер фото */
+  }
+
+  .shop-now {
+    margin: 0 auto; /* Центрируем кнопку */
+  }
+}
+
+/* 3. ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ (до 480px) */
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 40px;
+  }
+  .discount {
+    font-size: 24px;
+  }
+}
+
+
+/* / =============SECTION 2==============/ */
+
+/* 1. ГЛОБАЛЬНЫЙ СБРОС (База для любого проекта) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Гарантирует, что отступы не ломают ширину */
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden; /* Запрещает горизонтальный скролл */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* 2. СЕКЦИЯ КАРТОЧЕК */
+.card-section {
+  width: 100%;
+  padding: 120px 20px;
+}
+
+/* 3. КОНТЕЙНЕР КАРТОЧЕК (Твои требования по Flexbox) */
+.cards {
+  display: flex;
+  flex-wrap: wrap; /* Перенос строк при нехватке места */
+  justify-content: center; /* Центрирование */
+  gap: 40px; /* Расстояние между элементами */
+  
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 4. СТИЛЬ КАРТОЧКИ (Идеальный круг) */
+.card-1, .card-2, .card-3, .card-4 {
+  flex: 0 0 250px; /* Ширина 250px, не растет, не сжимается */
+  height: 250px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  border-radius: 50%; /* Идеальный круг */
+  border: 2px solid rgba(61, 37, 20, 0.1);
+  background-color: transparent;
+  
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Изображения */
+.card-1 img, .card-2 img, .card-3 img, .card-4 img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* Текст */
+.card-1 p, .card-2 p, .card-3 p, .card-4 p {
+  font-weight: 700;
+  font-size: 23px;
+  font-family: 'Montserrat', sans-serif;
+  color: #3d2514;
+}
+
+/* 5. ЭФФЕКТ НАВЕДЕНИЯ */
+.card-1:hover, .card-2:hover, .card-3:hover, .card-4:hover {
+  border: 2px dashed #fb923c;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 6. АНИМАЦИЯ ПОЯВЛЕНИЯ */
+.card-1, .card-2, .card-3, .card-4 {
+  opacity: 0;
+  animation: fadeInDown 0.8s ease forwards;
+}
+
+.card-1 { animation-delay: 0.1s; }
+.card-2 { animation-delay: 0.2s; }
+.card-3 { animation-delay: 0.3s; }
+.card-4 { animation-delay: 0.4s; }
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. ДЛЯ ПЛАНШЕТОВ (Экран до 992px) */
+@media (max-width: 992px) {
+  .cards {
+    gap: 20px; /* Уменьшаем расстояние между карточками */
+  }
+  
+  .card-1, .card-2, .card-3, .card-4 {
+    flex: 0 0 200px; /* Делаем карточки чуть меньше */
+    height: 200px;
+  }
+}
+
+/* 2. ДЛЯ ТЕЛЕФОНОВ (Экран до 600px) */
+@media (max-width: 600px) {
+  .cards {
+    gap: 30px;
+    padding: 20px 10px;
+  }
+
+  /* Карточки становятся в один столбик или по две, если место позволяет */
+  .card-1, .card-2, .card-3, .card-4 {
+    flex: 0 0 150px; /* Компактный размер для телефона */
+    height: 150px;
+  }
+
+  .card-1 img, .card-2 img, .card-3 img, .card-4 img {
+    width: 80px; /* Картинка тоже уменьшается */
+    height: 80px;
+  }
+
+  .card-1 p, .card-2 p, .card-3 p, .card-4 p {
+    font-size: 14px; /* Текст становится меньше */
+  }
+}
+
+/* /================SECTION 3==============/ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.features {
+  background: #e89a52;
+  padding: 90px 20px;
+  overflow: hidden;
+}
+
+.features__container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+/* ITEM */
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ТВОЯ АНИМАЦИЯ ИЗ ANIMISTA */
+.feature-item.scale-up-center {
+  -webkit-animation: scale-up-center 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+          animation: scale-up-center 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+/* Очередь анимации (эффект волны при загрузке) */
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.3s; }
+.feature-item:nth-child(3) { animation-delay: 0.5s; }
+
+/* КЛЮЧЕВЫЕ КАДРЫ */
+@-webkit-keyframes scale-up-center {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+/* ICON */
+.feature-icon {
+  width: 118px;
+  height: 118px;
+  min-width: 118px;
+  border: 1.5px dashed rgba(255,255,255,0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon-inner {
+  width: 82px;
+  height: 82px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon-inner img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+/* CONTENT */
+.feature-content h3 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.feature-content p {
+  max-width: 290px;
+  color: rgba(255,255,255,0.95);
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* TABLET */
+@media (max-width: 991px) {
+  .features__container {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .features {
+    padding: 65px 20px;
+  }
+  .feature-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .feature-item:nth-child(1),
+  .feature-item:nth-child(2),
+  .feature-item:nth-child(3) { 
+    animation-delay: 0s; 
+  }
+  .feature-content p {
+    max-width: 100%;
+  }
+}
+
+
+
+
+/* /=======================   SECTION 4  =========================/ */
+
+.products-section{
+   background-image: linear-gradient(#fff5ed, #fff);
+}
+
+.section-title{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 100px 0px 20px 0px; 
+}
+
+.section-title span{
+  color: #f29c52;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background-color: #fff;
+    border-radius: 200px;
+    margin-bottom: 5px;
+    padding: 4px 23px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: 0 1px 20px 12px rgba(73, 45, 19, .06);
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.section-title h2{
+color: #492d13;
+    font-size: 38px;
+    line-height: 1.25;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 40px 40px 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- 2. Карточка (Card) - основа дизайна --- */
+.cookie-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  position: relative; /* Важно для позиционирования кнопки */
+  overflow: hidden;   /* Чтобы анимация не выходила за края */
+  transition: all 0.4s ease;
+  min-height: 350px;  /* Фиксированная высота, чтобы не "схлопывалось" */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* --- 3. Изображение --- */
+.product-image {
+  width: 100%;
+  height: 200px;
+  padding: 50px 0 0 0;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* --- 4. Блок с текстом (Исчезает при наведении) --- */
+.product-info {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.product-name {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #333;
+}
+
+.price-now {
+  color: #d4a373;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-right: 8px;
+}
+
+.price-old {
+  color: #aaa;
+  text-decoration: line-through;
+  font-size: 0.9em;
+}
+
+/* --- 5. Кнопка (Появляется при наведении) --- */
+.add-to-cart-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  opacity: 0;
+  background: #d4a373;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  width: 80%;
+}
+
+/* --- 6. Анимация при наведении --- */
+.cookie-card:hover .product-info {
+  opacity: 0;
+}
+
+.cookie-card:hover .add-to-cart-btn {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- 7. Загрузка --- */
+.loading-state {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2em;
+  color: #888;
+}
+
+
+
+
+
+
+
+/* /============================ SECTION 5 ==========================/ */
+
+/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 1. Появление картинки */
+.offer-image-wrapper {
+  position: relative;
+  width: 500px; /* Было 400px */
+  flex-shrink: 0; /* Чтобы картинка не сжималась */
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* 2. Появление текста (с задержкой 0.5с) */
+.offer-text {
+  opacity: 0; /* Скрыт до начала анимации */
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+/* --- ОСТАЛЬНЫЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ) --- */
+.offer-section {
+
+  background-color: #fff9f0;
+  display: flex;
+  justify-content: center;
+  background-image: url(https://i.imgur.com/liIrH7b.png);
+  overflow: hidden; /* Чтобы не было полосы прокрутки при движении */
+}
+
+.offer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+  gap: 170px; /* Уменьшил gap, чтобы при большой картинке всё влезло на экран */
+  max-width: 1200px; /* Увеличил общую ширину контейнера */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.offer-image-wrapper img {
+  width: 100%;
+  display: block;
+  height: auto; /* Исправлено: теперь картинка масштабируется пропорционально */
+}
+
+/* Кружок */
+.offer-badge {
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  width: 130px; 
+  height: 130px;
+  
+  /* Ваша ссылка на SVG */
+  background-image: url('https://cdn.prod.website-files.com/6356157f39e4e52b89cf4553/63df94f46af00b439f50ed63_banner-star-badge.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  /* Центрируем текст внутри звезды */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Запускаем вращение всей звезды */
+  animation: rotateBadge 10s linear infinite;
+}
+.badge-text {
+  text-align: center;
+  line-height: 1.1;
+  font-size: 20px;
+  color: white;
+  font-weight: 500;
+  animation: rotateText 10s linear infinite;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@keyframes rotateBadge { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+.offer-text p { 
+  color: #fca35d;
+   font-weight: 700; 
+   font-size: 20px;
+   text-transform: uppercase; 
+   margin-bottom: 10px; 
+   font-family: 'Montserrat', sans-serif;
+  }
+.offer-text h3 { 
+  font-size: 56px; 
+  color: #492d13; 
+  line-height: 1.1; 
+  margin-bottom: 20px; 
+  font-weight: 900; 
+  font-family: 'Montserrat', sans-serif; 
+}
+.offer-text button { 
+  background-color: #fca35d; 
+  color: white; 
+  border: none; 
+  padding: 15px 35px; 
+  border-radius: 50px; 
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;  
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ --- */
+@media (max-width: 950px) {
+  .offer-section {
+    padding: 40px 20px; /* Добавляем отступы, чтобы контент не прилипал к краям */
+  }
+
+  .offer-container {
+    flex-direction: column; /* Текст над картинкой */
+    gap: 30px; /* Уменьшаем отступ между текстом и картинкой */
+    text-align: center; /* Центрируем всё */
+  }
+
+  .offer-image-wrapper {
+    width: 100%; /* Картинка занимает всю ширину контейнера */
+    max-width: 400px; /* Ограничиваем, чтобы не была огромной */
+    order: -1; /* Ставим картинку выше текста (если нужно) */
+  }
+
+  .offer-text h3 {
+    font-size: 32px; /* Уменьшаем шрифт заголовка для мобил */
+  }
+
+  .offer-text button {
+    font-size: 16px;
+    padding: 12px 25px;
+  }
+}
+
+
+/* /================= SECTION 6 ===================/ */
+
+
+.carousel-section2 { background-image: linear-gradient(#ffffff, #fcf9f9); padding-bottom: 50px; }
+
+
+.header-row2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px 40px 40px;
+}
+
+.section-title2 { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+.section-title2 span {
+  color: #f29c52; letter-spacing: 2px; text-transform: uppercase;
+  background-color: #fff; font-family: 'Montserrat', sans-serif; border-radius: 200px; padding: 4px 23px;
+  font-size: 13px; font-weight: 600; box-shadow: 0 1px 20px 12px rgba(73, 45, 19, .06);
+}
+
+.section-title2 h2 { color: #492d13; font-size: 38px; font-weight: 800; margin: 0; font-family: 'Montserrat', sans-serif; }
+
+.nav-container2 { display: flex; gap: 15px; }
+
+.nav-btn2 {
+  background: white; border: 1px solid #eee; width: 60px; height: 60px;
+  border-radius: 50%; cursor: pointer; font-size: 20px; color: #492d13; transition: 0.3s;
+}
+.nav-btn2:hover { background: #d35400; color: white; border-color: #d35400; }
+
+.carousel-wrapper2 {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0; /* Убираем здесь, чтобы тень не обрезалась */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.products-grid2 {
+  display: flex;
+  gap: 35px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+ padding: 20px 10px 40px 10px; /* 10px отступ от стенок, как ты просил */
+  width: 100%;
+  /* Важно: добавляем отрицательный margin, чтобы тень не обрезалась */
+  margin: 0 -10px; 
+}
+.products-grid2::-webkit-scrollbar { display: none; }
+
+.cookie-card2 {
+  flex: 0 0 250px; 
+  scroll-snap-align: start;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  
+  /* ТЕНИ НЕТ ИЗНАЧАЛЬНО */
+  box-shadow: none; 
+  border: 1px solid #f0f0f0; /* Добавим тонкую рамку для структуры */
+  
+  position: relative;
+  overflow: visible; /* Чтобы тень при наведении не обрезалась */
+  transition: all 0.4s ease;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-image2 { width: 100%; height: 200px; padding: 50px 0 0 0; object-fit: contain; margin-bottom: 15px; }
+.product-info2 { opacity: 1; transition: opacity 0.3s ease; }
+.product-name2 { font-size: 1.2em; margin: 10px 0; color: #333; }
+.price-now2 { color: #d4a373; font-weight: bold; font-size: 1.1em; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
+.price-old2 { color: #aaa; text-decoration: line-through; font-size: 0.9em; font-family: 'Montserrat', sans-serif; }
+
+.add-to-cart-btn2 {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(30px);
+  opacity: 0; background: #d4a373; color: white; border: none; padding: 12px 30px;
+  border-radius: 10px; font-weight: bold; cursor: pointer; transition: all 0.4s ease; width: 80%;
+}
+
+.cookie-card2:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border-color: transparent; /* Убираем рамку, чтобы не было скачка */
+  transform: translateY(-5px); /* Небольшой эффект "поднятия" карточки */
+}
+
+.cookie-card2:hover .product-info2 { opacity: 0; }
+.cookie-card2:hover .add-to-cart-btn2 { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.anim-fade { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.cookie-card2:nth-child(1) { animation-delay: 0.1s; }
+.cookie-card2:nth-child(2) { animation-delay: 0.2s; }
+.cookie-card2:nth-child(3) { animation-delay: 0.3s; }
+.cookie-card2:nth-child(4) { animation-delay: 0.4s; }
+.cookie-card2:nth-child(5) { animation-delay: 0.5s; }
+/* --- АДАПТАЦИЯ --- */
+
+/* Планшеты (меньше 1024px) */
+@media (max-width: 1024px) {
+  .header-row2 { padding: 40px 20px; }
+  .cookie-card2 { flex: 0 0 220px; } /* Чуть меньше карточки */
+}
+
+/* Мобильные телефоны (меньше 768px) */
+@media (max-width: 768px) {
+  .section-title2 h2 { font-size: 28px; }
+  
+  .cookie-card2 { 
+    flex: 0 0 85%; /* Карточка занимает 85% экрана */
+    min-height: 320px;
+    padding: 15px;
+  }
+
+  .nav-btn2 { width: 45px; height: 45px; font-size: 16px; }
+  
+  /* Делаем кнопку "Add to Cart" видимой всегда на мобильных, 
+     так как hover на тач-экранах работает плохо */
+  .add-to-cart-btn2 {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    position: relative; /* Чтобы она была в потоке, а не поверх */
+    margin-top: 15px;
+  }
+  
+  /* Убираем эффект исчезновения инфо при ховере на мобильных */
+  .cookie-card2:hover .product-info2 { opacity: 1; }
+}
+
+
+/* /========================================= FOOTER =======================================/ */
+
+
+

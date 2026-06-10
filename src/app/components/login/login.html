@@ -1,8 +1,35 @@
-<form [formGroup]="user" (submit)="submit()" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <input formControlName="email" type="email" placeholder="Enter email">
+<div class="login-page">
+  <div class="login-card">
+    <h2 class="anim-item">Kitchen Connect</h2>
+    <p class="subtitle anim-item">Log in to manage your recipes</p>
 
-    <input formControlName="password" type="password" placeholder="Enter password">
+    <div class="anim-item">
+        <form [formGroup]="user" (ngSubmit)="submit()">
+          <div class="form-group">
+            <input formControlName="email" type="email" placeholder="Chef's email">
+          </div>
+          
+          <div class="form-group">
+            <input formControlName="password" type="password" placeholder="Password">
+          </div>
+          
+          <button type="submit">Log In</button>
+        </form>
+    </div>
 
-    <button type="submit">Log In</button>
-</form>
+    <div class="divider anim-item"><span>or connect with</span></div>
+
+    <div class="social-login anim-item">
+      <button title="Google"><i class="fa-brands fa-google"></i></button>
+      <button title="Twitter"><i class="fa-brands fa-twitter"></i></button>
+      <button title="GitHub"><i class="fa-brands fa-github"></i></button>
+      <button title="Discord"><i class="fa-brands fa-discord"></i></button>
+    </div>
+
+    <p class="footer-link anim-item">
+      New chef here? <a routerLink="/register">Create an account</a>
+    </p>
+  </div>
+</div>

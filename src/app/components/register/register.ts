@@ -1,19 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router'; // Импортируем Роутер
+import { Router, RouterModule } from '@angular/router'; // Импортируем Роутер
 import { Auth } from '../../services/auth';
 
-// Наша заплатка для типов (чтобы сборка не падала)
-let DummyAuth = Auth as any;
-if (!DummyAuth.prototype.signUp) {
-  DummyAuth.prototype.signUp = function(user: any) {
-    return this.http.post('https://api.everrest.educata.dev/auth/sign_up', user);
-  };
-}
+
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -37,28 +31,21 @@ export class Register {
   });
 
   submit() {
-    if (this.user.invalid) return;
+  if (this.user.invalid) return;
+  const userValue = this.user.getRawValue();
 
-    const userValue = this.user.getRawValue();
-
-    (this.auth as any).signUp(userValue).subscribe({
-      next: (resp: any) => {
-        console.log('Регистрация успешна:', resp);
-        
-        if (resp && resp.access_token) {
-          this.auth.saveToken(resp.access_token);
-        }
-
-        // 1. Очищаем форму (инпуты станут пустыми)
-        this.user.reset();
-
-        // 2. Сразу же перекидываем на главную страницу /main
-        this.router.navigate(['/main']); 
-      },
-      error: (err: any) => {
-        console.error('Ошибка при регистрации:', err);
-        alert('Этот Email уже занят! Придумай другой, чтобы проверить регистрацию.');
+  this.auth.signUp(userValue).subscribe({
+    next: (resp: any) => {
+      console.log('Registration was successful:', resp);
+      if (resp?.access_token) {
+        this.auth.saveToken(resp.access_token);
       }
-    });
-  }
+      this.user.reset();
+      this.router.navigate(['/home']);
+    },
+    error: (err: any) => {
+      console.error('error registration:', err);
+    }
+  });
+}
 }

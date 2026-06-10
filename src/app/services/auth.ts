@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginUser } from '../models';
 import { Token } from '@angular/compiler';
+import { CookieItem } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +15,15 @@ export class Auth {
 
   // Новый URL для регистрации по твоей ссылке
   readonly SIGN_UP_URL = 'https://api.everrest.educata.dev/auth/sign_up';
+   
+
+  readonly COOKIES_URL = 'https://69e77ac468208c1debe8f2cf.mockapi.io/Cookies';
+
+  readonly CART_URL:string = 'https://69e77ac468208c1debe8f2cf.mockapi.io/Cart';
+  
 
   http = inject(HttpClient);
-
+  
   // Твой метод для логина
   signIn(user: LoginUser): Observable<Token> {
     return this.http.post<Token>(this.API_URL, user);
@@ -41,20 +48,18 @@ export class Auth {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
+  getCookies(): Observable<CookieItem[]> {
+  return this.http.get<CookieItem[]>(this.COOKIES_URL);
 }
 
+  logOut() {
+  localStorage.removeItem('acc_token');
+}
 
+getUser() {
+  return this.http.get('https://api.everrest.educata.dev/auth/user');
+}
 
-// function fib(a:number){
-
-//   if(a<=1){
-//     return 1
-//   }
-
-//   return fib(a-1) + fib(a-2)
-
-// }
-
-
-
-// REGISTERI
+//--------USER PROFILE INFO MORE---------//
+}

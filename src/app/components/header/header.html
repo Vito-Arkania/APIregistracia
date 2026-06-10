@@ -1,15 +1,69 @@
-<header>
-    <nav>
-        <a routerLink="/">Home</a>
+<nav class="custom-header">
+  <div class="header-container">
+    <div class="logo">
+      <a routerLink="/">Jain<span>Ery</span></a>
+    </div>
 
-        @if(auth.isLoggedIn()){
-         <a routerLink="profile">Profile</a>
-         <button>Log out</button>
-        }
-        @else {
-            <a routerLink="login">Log In</a>
-            <a routerLink="register">Register</a>
-        }
+    <ul class="nav-menu">
+      <li><a routerLink="/" class="nav-link">Home</a></li>
+      <li><a routerLink="/about" class="nav-link">About</a></li>
+      <li><a routerLink="/products" class="nav-link">Products</a></li>
+      <li><a routerLink="/blogs" class="nav-link">Blogs</a></li>
+      <li class="dropdown">
+        <a class="nav-link">Pages <span class="arrow-icon">▾</span></a>
+        <div class="dropdown-content">
+          <a routerLink="/page1">Page 1</a>
+          <a routerLink="/page2">Page 2</a>
+        </div>
+      </li>
+      <li><a routerLink="/contact" class="nav-link">Contact</a></li>
+    </ul>
 
-    </nav>
-</header>
+    <div class="header-actions">
+      <a routerLink="/cart" class="cart-wrapper" aria-label="Cart">
+        <span class="material-icons cart-icon" aria-hidden="true">shopping_cart</span>
+        <div class="cart-badge">{{ cartCount }}</div>
+      </a>
+
+      <ng-container *ngIf="!auth.isLoggedIn(); else loggedIn">
+        <a routerLink="/login" class="nav-link">Sign in</a>
+        <a routerLink="/register" class="btn-reservation">Sign up</a>
+      </ng-container>
+
+      <ng-template #loggedIn>
+        <div class="auth-area">
+          <span class="user-name">{{ user?.name || user?.email || 'User' }}</span>
+          <button class="login-nav-link" (click)="logout()">Logout</button>
+        </div>
+      </ng-template>
+
+      <div class="burger" [class.active]="isMenuOpen" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav" [class.active]="isMenuOpen">
+    <div class="mobile-menu-logo">Jain<span>Ery</span></div>
+    <a routerLink="/" class="nav-link" (click)="toggleMenu()">Home</a>
+    <a routerLink="/about" class="nav-link" (click)="toggleMenu()">About</a>
+    <a routerLink="/products" class="nav-link" (click)="toggleMenu()">Products</a>
+    <a routerLink="/blogs" class="nav-link" (click)="toggleMenu()">Blogs</a>
+    <a routerLink="/contact" class="nav-link" (click)="toggleMenu()">Contact</a>
+    <a routerLink="/cart" class="nav-link" (click)="toggleMenu()">Cart</a>
+
+    <div class="auth-group" *ngIf="!auth.isLoggedIn()">
+      <a routerLink="/login" class="nav-link" (click)="toggleMenu()">Sign in</a>
+      <a routerLink="/register" class="btn-reservation" (click)="toggleMenu()">Sign up</a>
+    </div>
+
+    <div *ngIf="auth.isLoggedIn()" class="auth-group">
+      <a routerLink="/profile" class="nav-link" (click)="toggleMenu()">Profile</a>
+      <button class="login-nav-link" (click)="logout(); toggleMenu()">Logout</button>
+    </div>
+  </div>
+
+  <div class="menu-overlay" [class.active]="isMenuOpen" (click)="toggleMenu()"></div>
+</nav>

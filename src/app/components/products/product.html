@@ -1,0 +1,38 @@
+<section class="products-page">
+  <div class="products-top">
+    <div class="section-title">
+      <span class="badge">PRODUCTS</span>
+      <h2>All Products</h2>
+    </div>
+
+    <div class="products-controls">
+      <input type="text" placeholder="Search products..." [(ngModel)]="search" class="search-input" />
+      <input type="number" placeholder="Min price" [(ngModel)]="minPrice" class="price-input" />
+      <input type="number" placeholder="Max price" [(ngModel)]="maxPrice" class="price-input" />
+      <label class="checkbox-inline"><input type="checkbox" [(ngModel)]="onlyDiscount" /> On Sale</label>
+      <button class="clear-btn" (click)="clearFilters()">Clear</button>
+    </div>
+  </div>
+
+  <div class="products-grid">
+    <ng-container *ngIf="filteredCookies && filteredCookies.length; else noResults">
+      <article *ngFor="let item of filteredCookies" class="cookie-card">
+        <img [src]="item.img" [alt]="item.name" class="product-image">
+
+        <div class="product-info">
+          <h3 class="product-name">{{ item.name }}</h3>
+          <p class="product-price">
+            <span class="price-now">${{ item.price }} USD</span>
+            <span class="price-old" *ngIf="item['old-price']">{{ item['old-price'] }}</span>
+          </p>
+        </div>
+
+        <button class="add-to-cart-btn" type="button" (click)="addToCart(item)">Add to Cart</button>
+      </article>
+    </ng-container>
+
+    <ng-template #noResults>
+      <div class="loading-state"><p>No products found.</p></div>
+    </ng-template>
+  </div>
+</section>

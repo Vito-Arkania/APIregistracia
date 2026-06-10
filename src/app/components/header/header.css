@@ -1,87 +1,346 @@
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+
+.custom-header {
+  background-color: #ffffff;
   width: 100%;
-  height: 70px;
-  background: #0f172a; /* Плотный красивый темный фон */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  height: 90px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Логотип улетит влево, кнопки — вправо */
-  padding: 0 40px; /* Отступы по бокам экрана */
-  box-sizing: border-box;
-  z-index: 100000;
-  font-family: system-ui, -apple-system, sans-serif;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-}
-
-/* Стили для логотипа / названия проекта слева */
-.logo {
-  color: #fff;
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #6366f1, #a855f7); /* Трендовый градиент */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Контейнер для ссылок и кнопок справа */
-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px; /* Четкий отступ между элементами навигации */
-}
-
-/* Стили для ссылок (Home, Profile, Log In, Register) */
-nav a {
-  color: #cbd5e1; /* Яркий, читаемый цвет */
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   position: relative;
-  padding: 6px 0;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
 
-/* Эффект при наведении на ссылку */
-nav a:hover {
-  color: #f8fafc;
+.custom-header * {
+  box-sizing: border-box;
 }
 
-/* Плавная полоска подчеркивания при ховере */
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #6366f1;
-  transition: width 0.2s ease;
-  border-radius: 2px;
-}
-
-nav a:hover::after {
+.header-container {
+  max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Кнопка Log Out */
-nav button {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  color: #fca5a5;
-  padding: 9px 18px;
-  border-radius: 10px;
+/* Логотип */
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+  color: #3d2514;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+}
+
+.logo span {
+  color: #e99c55;
+}
+
+/* Меню */
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-menu li {
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #3d2514;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover, 
+.nav-link.active {
+  color: #e99c55;
+}
+
+/* Remove underlines and bottom borders for header links, logo and cart */
+.nav-menu a,
+.logo a,
+.cart-wrapper,
+.mobile-nav a,
+.dropdown-content a {
+  text-decoration: none;
+  border-bottom: none;
+  outline: none;
+}
+
+.logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Дропдаун Pages */
+.dropdown {
+  position: relative;
+}
+
+.arrow-icon {
+  font-size: 18px;
+  transition: transform 0.25s ease;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background-color: #ffffff;
+  min-width: 170px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 10px 0;
+  display: none;
+  opacity: 0;
+  transition: all 0.25s ease;
+}
+
+.dropdown-content a {
+  color: #3d2514;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
   font-size: 14px;
   font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-content a:hover {
+  background-color: #fdf6f0;
+  color: #e99c55;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown:hover .arrow-icon {
+  transform: rotate(180deg);
+}
+
+/* Экшены */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.cart-wrapper {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  background: #fff;
+  border: 1px solid rgba(61,37,20,0.06);
+  box-shadow: 0 8px 22px rgba(61,37,20,0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cart-icon {
+  display: inline-block;
+}
+
+.cart-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cart-icon path { stroke: #3d2514; }
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #e99c55;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+}
+
+.cart-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(233,156,85,0.08);
+}
+
+.login-nav-link {
+  /* Внешний вид */
+  background-color: #e99c55; /* Твой оранжевый цвет */
+  color: #ffffff;            /* Белый текст */
+  padding: 12px 30px;        /* Размер кнопки */
+  border-radius: 50px;       /* Полное скругление */
+  
+  /* Типографика */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-decoration: none;     /* Убираем подчеркивание */
+  font-size: 16px;
+  
+  /* Переходы для плавности */
+  transition: all 0.3s ease;
+  display: inline-block;     /* Чтобы работали отступы */
+}
+
+/* Эффект при наведении */
+.login-nav-link:hover {
+  background-color: #d88a44; /* Чуть темнее при наведении */
+  transform: translateY(-2px); /* Легкий прыжок вверх */
+  box-shadow: 0 5px 15px rgba(233, 156, 85, 0.4); /* Мягкая тень */
+}
+
+/* Эффект при нажатии */
+.login-nav-link:active {
+  transform: translateY(0);
+}
+
+
+
+@keyframes basketWobble {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+/* Бургер меню */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.burger input {
+  display: none;
+}
+
+.burger span {
+  width: 25px;
+  height: 3px;
+  background-color: #3d2514;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Мобильное меню */
+.mobile-nav {
+  display: none;
+}
+
+/* Медиа запросы для мобильных */
+@media (max-width: 950px) {
+  .custom-header { overflow: visible; }
+  
+  .header-container { width: 100%; display: flex; gap: 20px; padding: 0 15px; }
+  
+  .burger { display: flex; position: relative; margin-left: auto; z-index: 1002; cursor: pointer; }
+  
+  /* Анимация бургера */
+  .burger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .burger.active span:nth-child(2) { opacity: 0; }
+  .burger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  .nav-menu, .desktop-login, .desktop-register { display: none; }
+
+  /* --- ЛЕВОСТОРОННЕЕ МЕНЮ --- */
+ .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background-color: #fff9f0; /* Тот самый цвет фона */
+    padding: 40px 30px; /* Немного уменьшили отступ сверху */
+    gap: 20px;
+    z-index: 1000;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+  }
+
+  .mobile-nav.active { left: 0; }
+
+  .mobile-menu-logo {
+    font-size: 32px;
+    font-weight: 800;
+    color: #3d2514;
+    margin-bottom: 30px; /* Отступ от ссылок */
+  }
+
+  .mobile-menu-logo span { color: #e99c55; }
+
+  /* Затемнение фона */
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 999;
+  }
+  .menu-overlay.active { display: block; }
+
+  .auth-group{
+    display: none;
+  }
+
+  .login-nav-link{
+    max-width: 150px;
+  }
+}
+
+.btn-reservation {
+  background-color: #e99c55;
+  color: #ffffff;
+  border: none;
+  padding: 14px 30px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(233, 156, 85, 0.2);
   transition: all 0.2s ease;
 }
 
-nav button:hover {
-  background: #ef4444;
-  color: white;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+.btn-reservation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 156, 85, 0.35);
 }
+
+
+
+/* /========PROFILE===========/ */
+

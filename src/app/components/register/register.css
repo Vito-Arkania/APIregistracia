@@ -1,117 +1,94 @@
-:host {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+/* Устанавливаем шрифт для всего приложения */
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.auth-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-  font-family: system-ui, -apple-system, sans-serif;
-  z-index: 99999;
-
-  --primary-color: #6366f1;
-  --primary-hover: #4f46e5;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
+  min-height: 100vh;
+  background-image: url(https://i.imgur.com/ulzLT97.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
 }
 
-form {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
+.auth-card {
+  background: white;
+  padding: 3rem;
   border-radius: 24px;
-  padding: 35px 25px;
+  box-shadow: 0 15px 35px rgba(211, 84, 0, 0.15);
   width: 100%;
-  max-width: 440px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  box-sizing: border-box;
+  max-width: 450px;
+  text-align: center;
+  /* Анимация карточки */
+  opacity: 0;
+  animation: formFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-.form-scroll-container {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-height: 75vh;
-  overflow-y: auto;
-  padding-right: 8px;
+h2 { color: #d35400; margin-bottom: 0.5rem; font-size: 1.8rem; }
+.auth-subtitle { color: #818588; margin-bottom: 2.5rem; font-size: 0.95rem; font-weight: 400; }
+
+/* Анимация элементов внутри карточки (лесенка) */
+.auth-card > * {
+  opacity: 0;
+  animation: formFadeIn 0.6s ease-out forwards;
 }
 
-/* Настройка скроллбара */
-.form-scroll-container::-webkit-scrollbar {
-  width: 5px;
-}
-.form-scroll-container::-webkit-scrollbar-thumb {
-  background: var(--glass-border);
-  border-radius: 10px;
+/* Задержки для элементов */
+.auth-card h2 { animation-delay: 0.1s; }
+.auth-card .auth-subtitle { animation-delay: 0.2s; }
+.auth-card form { animation-delay: 0.3s; }
+.auth-card .auth-footer { animation-delay: 0.4s; }
+
+/* Основная анимация */
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-.form-row {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-}
+/* Остальные стили */
+.auth-form-container { display: flex; flex-direction: column; gap: 0.5rem; }
+.auth-form-row { display: flex; gap: 12px; }
 
 input, select {
   width: 100%;
-  padding: 13px 16px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--glass-border);
+  padding: 14px 16px;
+  border: 2px solid #fdebd0;
   border-radius: 12px;
-  color: var(--text-main);
-  font-size: 15px;
-  transition: all 0.2s ease;
   box-sizing: border-box;
+  margin-bottom: 0.8rem;
+  transition: 0.3s;
 }
+input:focus, select:focus { outline: none; border-color: #d35400; }
 
-input:focus, select:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-}
-
-input::placeholder {
-  color: var(--text-muted);
-  opacity: 0.6;
-}
-
-select {
-  cursor: pointer;
-  appearance: none;
-}
-select option {
-  background: #1e1b4b;
-  color: var(--text-main);
-}
-
-button[type="submit"] {
+.auth-btn {
   width: 100%;
-  padding: 14px;
-  background: var(--primary-color);
+  padding: 15px;
+  background: #d35400;
+  color: white;
   border: none;
   border-radius: 12px;
-  color: white;
-  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-  margin-top: 5px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(211, 84, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.auth-btn:hover { background: #e67e22; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(211, 84, 0, 0.4); }
 
-button[type="submit"]:hover:not(:disabled) {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-button[type="submit"]:disabled {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-muted);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
+.auth-footer { margin-top: 2rem; font-size: 0.9rem; color: #7f8c8d; }
+.auth-footer a { color: #d35400; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.3s; }
+.auth-footer a:hover { border-color: #d35400; }
