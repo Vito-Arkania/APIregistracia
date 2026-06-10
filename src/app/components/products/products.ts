@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router'; // Добавили Router и ActivatedRoute
 import { Auth } from '../../services/auth';
 import { CookieItem } from '../../models';
 import { CartService } from '../../services/cart.service';
@@ -19,16 +19,39 @@ export class Products implements OnInit {
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly cartService = inject(CartService);
   private readonly notification = inject(NotificationService);
+  private readonly router = inject(Router);         // Добавили
+  private readonly route = inject(ActivatedRoute);  // Добавили
 
   cookies: CookieItem[] = [];
   search = '';
   minPrice: number | null = null;
   maxPrice: number | null = null;
   onlyDiscount = false;
-  
 
   ngOnInit(): void {
+    // Читаем параметры из URL при загрузке страницы
+    this.route.queryParams.subscribe(params => {
+      this.search = params['search'] || '';
+      this.minPrice = params['minPrice'] ? Number(params['minPrice']) : null;
+      this.maxPrice = params['maxPrice'] ? Number(params['maxPrice']) : null;
+      this.onlyDiscount = params['onlyDiscount'] === 'true';
+    });
+
     this.loadData();
+  }
+
+  // Метод, который мы вызываем при любом изменении фильтра
+  updateFilters(): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        search: this.search || null,
+        minPrice: this.minPrice || null,
+        maxPrice: this.maxPrice || null,
+        onlyDiscount: this.onlyDiscount ? 'true' : null
+      },
+      queryParamsHandling: 'merge'
+    });
   }
 
   loadData(): void {
@@ -56,7 +79,7 @@ export class Products implements OnInit {
   addToCart(item: CookieItem): void {
     if (!item) return;
     this.cartService.add({ ...item, qty: 1 });
-    this.notification.show(`Added "${item.name}" to cart.`);
+    this.notification.show(`Added "${item.name}" to cart.`, 'success');
   }
 
   clearFilters(): void {
@@ -64,6 +87,8 @@ export class Products implements OnInit {
     this.minPrice = null;
     this.maxPrice = null;
     this.onlyDiscount = false;
+    
+    // Сбрасываем URL
+    this.router.navigate([], { queryParams: {} });
   }
 }
-

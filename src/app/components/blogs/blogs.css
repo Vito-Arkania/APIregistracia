@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
+
+
+.page-header {
+  height: 450px; 
+  background: #fdf5eb; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+  background-image: linear-gradient(rgba(243, 207, 177, 0.275), rgba(248, 221, 197, 0.275)), url('https://uploads-ssl.webflow.com/6356157f39e4e52b89cf4553/635a1a21989f0f8051a9071d_hero-bg-pattern.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.content {
+  text-align: center;
+  /* Убираем position: relative, чтобы он не мешал абсолютным дочерним элементам */
+  width: 100%;
+}
+
+h1 {
+  font-size: 70px;
+  color: #4a3528;
+  margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.breadcrumb {
+  position: absolute;
+  left: 50%;
+  bottom: 0; 
+  /* Объединяем трансформации в одну строку */
+  transform: translate(-50%, 50%); 
+  
+  background-color: #fca350;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: bold;
+  z-index: 10;
+  white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translate(-50%, 100%);
+  }
+  to { 
+    opacity: 1; 
+    transform: translate(-50%, 50%);
+  }
+}
+
+
+h1 {
+  animation: fadeIn 1s ease-out;
+}
+
+.breadcrumb {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+
+
+/* /================================================SECTION 2===========================================/ */
+
+
+.new-article{
+background-color: #ffffff;
+}
+
+.article-info{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.article-info .article-hero{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 70px 0 70px 0;
+}
+
+.article-hero p{
+  color: #f29c52;
+  padding: 6px 19px 6px 19px;
+  border-radius: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.article-hero h2{
+  color: #492d13;
+  font-size: 38px;
+  line-height: 1.25;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.article-info .article-cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 20px 5px 130px 5px;
+}
+
+.article-cards .card{
+  background-color: #f3e9db;
+  border-radius: 13px;
+}
+
+.article-cards .card .card-image{
+  padding: 17px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.article-cards .card .card-text{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 30px 0 40px 20px;
+  gap: 30px;
+}
+
+.article-cards .card .card-text p{
+  color: #f29c52;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.article-cards .card .card-text h3{
+  color: #492d13;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 340px;
+}
+
+.article-cards .card .card-text button {
+  color: #f29c52;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+  border-radius: 8px;
+  border: #f29c52 2px solid;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.article-cards .card .card-text button:hover {
+  color: #ffffff;
+  background-color: #f29c52;
+  border: #f29c52 2px solid;
+}
+
+/* Адаптация для планшетов (до 992px) */
+@media (max-width: 992px) {
+  .article-info .article-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+    gap: 20px;
+    padding: 0 20px;
+  }
+}
+
+/* Адаптация для мобильных устройств (до 600px) */
+@media (max-width: 600px) {
+  .article-info .article-cards {
+    grid-template-columns: 1fr; /* 1 колонка */
+  }
+
+  .article-hero h2 {
+    font-size: 28px; /* Уменьшаем заголовок на узких экранах */
+    padding: 0 15px;
+    text-align: center;
+  }
+  
+  .article-cards .card .card-text h3 {
+    max-width: 100%; /* Заголовок карточки растягивается на всю ширину */
+  }
+}
+
+/* ==================ANIMATION===================== */
+.animate-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Конечное состояние */
+.animate-show {
+  opacity: 1;
+  transform: translateY(0);
+}

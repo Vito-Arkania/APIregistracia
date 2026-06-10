@@ -1,5 +1,85 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
 
+
+.page-header {
+  height: 450px; 
+  background: #fdf5eb; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+  background-image: linear-gradient(rgba(243, 207, 177, 0.275), rgba(248, 221, 197, 0.275)), url('https://uploads-ssl.webflow.com/6356157f39e4e52b89cf4553/635a1a21989f0f8051a9071d_hero-bg-pattern.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.content {
+  text-align: center;
+  /* Убираем position: relative, чтобы он не мешал абсолютным дочерним элементам */
+  width: 100%;
+}
+
+h1 {
+  font-size: 70px;
+  color: #4a3528;
+  margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.breadcrumb {
+  position: absolute;
+  left: 50%;
+  bottom: 0; 
+  /* Объединяем трансформации в одну строку */
+  transform: translate(-50%, 50%); 
+  
+  background-color: #fca350;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: bold;
+  z-index: 10;
+  white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translate(-50%, 100%);
+  }
+  to { 
+    opacity: 1; 
+    transform: translate(-50%, 50%);
+  }
+}
+
+
+h1 {
+  animation: fadeIn 1s ease-out;
+}
+
+.breadcrumb {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+
+
+
+
+
+
+
+
+/* /================================================= PRODUCTS SECTION 2============================================/ */
 .products-page {
   padding: 100px 20px;
   background-image: linear-gradient(#fff5ed, #fff);
@@ -47,7 +127,7 @@
   font-family: inherit;
   color: #3d2514;
 }
-.price-input { min-width: 110px; max-width: 140px; }
+.price-input { min-width: 110px; max-width: 140px; font-family: 'Montserrat', sans-serif; font-weight: 500; }
 .search-input::placeholder { color: #bfa387; opacity: 0.95; font-style: italic; }
 .search-input:focus, .price-input:focus {
   outline: none;
@@ -55,13 +135,13 @@
   box-shadow: 0 12px 36px rgba(242,156,82,0.14), 0 0 0 4px rgba(242,156,82,0.06);
   transform: translateY(-2px);
 }
-.checkbox-inline { display:flex; align-items:center; gap:8px; font-size:14px; color:#3d2514; }
+.checkbox-inline { font-family: 'Montserrat', sans-serif; font-weight: 600; display:flex; align-items:center; gap:8px; font-size:14px; color:#3d2514; }
 .checkbox-inline input[type=checkbox] { width:18px; height:18px; accent-color: #fb923c; border-radius:4px; cursor:pointer; }
 .clear-btn {
   background: linear-gradient(180deg,#fb923c,#ea7a1f);
   color:#fff; border:none; padding:10px 16px; border-radius:999px; cursor:pointer;
   box-shadow: 0 8px 26px rgba(251,146,60,0.18);
-  transition: transform .14s ease, box-shadow .14s ease, opacity .14s ease;
+  transition: transform .14s ease, box-shadow .14s ease, opacity .14s ease; font-family: 'Montserrat', sans-serif; font-weight: 500;
 }
 .clear-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(251,146,60,0.22); }
 

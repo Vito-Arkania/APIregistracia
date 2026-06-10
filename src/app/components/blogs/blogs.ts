@@ -1,15 +1,12 @@
 import { Component, ElementRef, inject, Renderer2 } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Обязательно импортируйте это
 
 @Component({
-  selector: 'app-about',
-  standalone: true, // Если вы используете standalone компоненты (стандарт Angular 17+)
-  imports: [CommonModule],
-  templateUrl: './about.html',
-  styleUrls: ['./about.css'],
+  selector: 'app-blogs',
+  imports: [],
+  templateUrl: './blogs.html',
+  styleUrl: './blogs.css',
 })
-export class About {
-
+export class Blogs {
    private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
   private observer!: IntersectionObserver;
@@ -34,15 +31,5 @@ export class About {
       this.renderer.addClass(el, 'animate-hidden');
       this.observer.observe(el);
     })
-  }
-
-
-  currentIndex = 0;
-  totalSlides = 2; 
-  next() {
-    this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-  }
-  prev() {
-    this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
   }
 }

@@ -293,12 +293,6 @@ body {
 
 /* /================SECTION 3==============/ */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .features {
   background: #e89a52;
   padding: 90px 20px;
@@ -449,6 +443,10 @@ body {
   padding: 100px 0px 20px 0px; 
 }
 
+h3,p,span{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .section-title span{
   color: #f29c52;
     letter-spacing: 2px;
@@ -576,18 +574,6 @@ color: #492d13;
 
 /* /============================ SECTION 5 ==========================/ */
 
-/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* 1. Появление картинки */
 .offer-image-wrapper {
   position: relative;
@@ -615,10 +601,10 @@ color: #492d13;
 .offer-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* ЭТО КЛЮЧЕВАЯ СТРОКА: центрирует по вертикали */
   padding: 20px 10px;
-  gap: 170px; /* Уменьшил gap, чтобы при большой картинке всё влезло на экран */
-  max-width: 1200px; /* Увеличил общую ширину контейнера */
+  gap: 170px; 
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
@@ -699,9 +685,10 @@ color: #492d13;
   }
 
   .offer-container {
-    flex-direction: column; /* Текст над картинкой */
-    gap: 30px; /* Уменьшаем отступ между текстом и картинкой */
-    text-align: center; /* Центрируем всё */
+    flex-direction: column; 
+    align-items: center;    /* Добавь это, чтобы центрировать текст и картинку */
+    gap: 30px; 
+    text-align: center; 
   }
 
   .offer-image-wrapper {
@@ -719,6 +706,19 @@ color: #492d13;
     padding: 12px 25px;
   }
 }
+
+/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 /* /================= SECTION 6 ===================/ */
@@ -766,14 +766,13 @@ color: #492d13;
 
 .products-grid2 {
   display: flex;
-  gap: 35px;
+  gap: 66.8px; /* Фиксированный отступ */
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
- padding: 20px 10px 40px 10px; /* 10px отступ от стенок, как ты просил */
+  padding: 20px 0; /* Отступы сверху/снизу для теней */
   width: 100%;
-  /* Важно: добавляем отрицательный margin, чтобы тень не обрезалась */
-  margin: 0 -10px; 
+  box-sizing: border-box;
 }
 .products-grid2::-webkit-scrollbar { display: none; }
 
@@ -833,11 +832,22 @@ color: #492d13;
 @media (max-width: 1024px) {
   .header-row2 { padding: 40px 20px; }
   .cookie-card2 { flex: 0 0 220px; } /* Чуть меньше карточки */
+  .products-grid2{
+    display: flex;
+    position: relative;
+  }
 }
 
 /* Мобильные телефоны (меньше 768px) */
 @media (max-width: 768px) {
   .section-title2 h2 { font-size: 28px; }
+
+  .products-grid2{
+    display: flex;
+    gap: 100px;
+    position: relative;
+    left: 35px;
+  }
   
   .cookie-card2 { 
     flex: 0 0 85%; /* Карточка занимает 85% экрана */
@@ -861,7 +871,248 @@ color: #492d13;
 }
 
 
-/* /========================================= FOOTER =======================================/ */
 
 
 
+/* /============================================SECTION 7============================/ */
+
+.new-article{
+background-color: #ffffff;
+}
+
+.article-info{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.article-info .article-hero{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 70px 0 70px 0;
+}
+
+.article-hero p{
+  color: #f29c52;
+  padding: 6px 19px 6px 19px;
+  border-radius: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.article-hero h2{
+  color: #492d13;
+  font-size: 38px;
+  line-height: 1.25;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.article-info .article-cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.article-cards .card{
+  background-color: #f3e9db;
+  border-radius: 13px;
+}
+
+.article-cards .card .card-image{
+  padding: 17px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.article-cards .card .card-text{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 30px 0 40px 20px;
+  gap: 30px;
+}
+
+.article-cards .card .card-text p{
+  color: #f29c52;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.article-cards .card .card-text h3{
+  color: #492d13;
+  font-size: 25px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 340px;
+}
+
+.article-cards .card .card-text button {
+  color: #f29c52;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+  border-radius: 8px;
+  border: #f29c52 2px solid;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.article-cards .card .card-text button:hover {
+  color: #ffffff;
+  background-color: #f29c52;
+  border: #f29c52 2px solid;
+}
+
+/* Адаптация для планшетов (до 992px) */
+@media (max-width: 992px) {
+  .article-info .article-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+    gap: 20px;
+    padding: 0 20px;
+  }
+}
+
+/* Адаптация для мобильных устройств (до 600px) */
+@media (max-width: 600px) {
+  .article-info .article-cards {
+    grid-template-columns: 1fr; /* 1 колонка */
+  }
+
+  .article-hero h2 {
+    font-size: 28px; /* Уменьшаем заголовок на узких экранах */
+    padding: 0 15px;
+    text-align: center;
+  }
+  
+  .article-cards .card .card-text h3 {
+    max-width: 100%; /* Заголовок карточки растягивается на всю ширину */
+  }
+}
+
+/* /====================================== SECTION 8 ====================================== */
+
+
+/* Основные стили секции */
+.reservation-section {
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.container { 
+    max-width: 1100px; /* Было 950px, увеличьте это число до нужной вам ширины */
+    width: 95%;        /* Добавляем ширину 95%, чтобы на мобильных не упиралось в края */
+    margin: 0 auto;    /* Центрирует контейнер */
+    text-align: center; 
+}
+
+.subtitle { 
+    color: #f7a052; 
+    font-weight: 700; 
+    letter-spacing: 2px; 
+    margin-bottom: 10px; 
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+.title { 
+    font-size: 45px; 
+    color: #333; 
+    margin-bottom: 40px; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+/* Стилизация формы */
+.reservation-form {
+    background: #ffffff;
+    padding: 50px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+     background-image: url('https://uploads-ssl.webflow.com/6356157f39e4e52b89cf4553/63e118ed10b04d1b5e8afae8_reservation-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+}
+
+.form-row { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    margin-bottom: 20px; 
+}
+
+input, textarea { 
+    width: 100%; 
+    padding: 18px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 6px; 
+    box-sizing: border-box; 
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus, textarea:focus { border-color: #f7a052; }
+
+textarea { 
+    height: 180px; 
+    resize: none; 
+    margin-bottom: 25px; 
+}
+
+.button-wrapper { text-align: center; }
+
+.submit-btn {
+    background: #f7a052; 
+    color: white; 
+    border: none; 
+    padding: 18px 45px;
+    border-radius: 50px; 
+    font-size: 16px; 
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.submit-btn:hover { 
+    background: #e88d3d; 
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(247, 160, 82, 0.3);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .form-row { grid-template-columns: 1fr; }
+    .title { font-size: 32px; }
+}
+
+
+/* /========================================= animation =======================================/ */
+
+
+.animate-hidden {
+  opacity: 0;
+  transform: translateY(60px); /* Чуть глубже старт */
+  
+  /* 1.5s — длительность анимации */
+  transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.animate-show {
+  opacity: 1;
+  transform: translateY(0);
+}

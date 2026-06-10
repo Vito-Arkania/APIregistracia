@@ -12,8 +12,8 @@
       <li class="dropdown">
         <a class="nav-link">Pages <span class="arrow-icon">▾</span></a>
         <div class="dropdown-content">
-          <a routerLink="/page1">Page 1</a>
-          <a routerLink="/page2">Page 2</a>
+          <a routerLink="/page1">FAQ</a>
+          <a routerLink="/page2">License</a>
         </div>
       </li>
       <li><a routerLink="/contact" class="nav-link">Contact</a></li>
@@ -25,14 +25,16 @@
         <div class="cart-badge">{{ cartCount }}</div>
       </a>
 
-      <ng-container *ngIf="!auth.isLoggedIn(); else loggedIn">
+      <ng-container *ngIf="!isLoggedIn; else loggedIn">
         <a routerLink="/login" class="nav-link">Sign in</a>
         <a routerLink="/register" class="btn-reservation">Sign up</a>
       </ng-container>
 
       <ng-template #loggedIn>
         <div class="auth-area">
-          <span class="user-name">{{ user?.name || user?.email || 'User' }}</span>
+          <span routerLink="/profile" class="user-name">
+  {{ userName }}
+</span>
           <button class="login-nav-link" (click)="logout()">Logout</button>
         </div>
       </ng-template>
@@ -54,15 +56,17 @@
     <a routerLink="/contact" class="nav-link" (click)="toggleMenu()">Contact</a>
     <a routerLink="/cart" class="nav-link" (click)="toggleMenu()">Cart</a>
 
-    <div class="auth-group" *ngIf="!auth.isLoggedIn()">
+    <div class="divider"></div>
+
+    <div class="auth-group" *ngIf="!isLoggedIn">
       <a routerLink="/login" class="nav-link" (click)="toggleMenu()">Sign in</a>
       <a routerLink="/register" class="btn-reservation" (click)="toggleMenu()">Sign up</a>
     </div>
 
-    <div *ngIf="auth.isLoggedIn()" class="auth-group">
-      <a routerLink="/profile" class="nav-link" (click)="toggleMenu()">Profile</a>
-      <button class="login-nav-link" (click)="logout(); toggleMenu()">Logout</button>
-    </div>
+   <div *ngIf="isLoggedIn" class="auth-group">
+  <span routerLink="/profile" class="user-email-text">{{ user?.email }}</span>
+  <button class="login-nav-link" (click)="logout(); toggleMenu()">Logout</button>
+</div>
   </div>
 
   <div class="menu-overlay" [class.active]="isMenuOpen" (click)="toggleMenu()"></div>

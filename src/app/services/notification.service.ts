@@ -2,22 +2,46 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-  show(message: string, duration = 3000) {
+  
+  show(message: string, type: 'success' | 'error' = 'success', duration = 3000) {
     try {
       const el = document.createElement('div');
       el.textContent = message;
-      el.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#fff;padding:10px 14px;border-radius:8px;z-index:10000;font-size:14px;';
+
+      // Устанавливаем цвета: зеленый для успеха, красный для ошибки
+      const bgColor = type === 'error' ? '#d32f2f' : '#388e3c';
+      
+      el.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: ${bgColor};
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        z-index: 10000;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      `;
+
       document.body.appendChild(el);
-      // Fade out
+
+      // Плавное появление
+      setTimeout(() => el.style.opacity = '1', 10);
+
+      // Плавное исчезновение
       setTimeout(() => {
-        el.style.transition = 'opacity 300ms';
         el.style.opacity = '0';
-      }, duration - 300);
-      setTimeout(() => {
-        if (el.parentNode) el.parentNode.removeChild(el);
+        setTimeout(() => {
+          if (el.parentNode) el.parentNode.removeChild(el);
+        }, 300);
       }, duration);
+
     } catch (e) {
-      // Fallback to alert if DOM manipulation fails
       console.warn('Notification failed, falling back to alert.', e);
       alert(message);
     }

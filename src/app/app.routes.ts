@@ -5,12 +5,12 @@ import { Home } from './components/home/home';
 import { About } from './components/about/about';
 import { Products } from './components/products/products';
 import { Cart } from './components/cart/cart';
+import { Profile } from './components/profile/profile';
+import { Blogs } from './components/blogs/blogs';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: Home
-    },
+    { path: '', redirectTo: 'home', pathMatch: 'full' }, 
+  { path: 'home', component: Home },
     {
         path: 'about',
         component: About
@@ -30,6 +30,14 @@ export const routes: Routes = [
     {
         path: 'cart',
         component: Cart
+    },
+    {
+        path: 'profile',
+        component: Profile
+    },
+    {
+        path: 'blogs',
+        component: Blogs
     },
     {
         path:'**',

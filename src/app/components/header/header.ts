@@ -1,47 +1,52 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterModule } from "@angular/router";
-import { CommonModule } from "@angular/common"; // Добавь этот импорт
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
 import { Auth } from '../../services/auth';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
-  standalone: true, // Убедись, что это стоит
-  imports: [RouterModule, CommonModule], // Добавь CommonModule сюда
+  standalone: true,
+  imports: [RouterModule, CommonModule],
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
 })
-export class Header {
+export class Header implements OnInit {
   readonly auth = inject(Auth);
-
   readonly cartService = inject(CartService);
 
   isMenuOpen = false;
-
   cartCount = 0;
+  isLoggedIn = false;
+  user: any = null; // Данные пользователя уже здесь!
 
-  user: any = null
+  ngOnInit() {
+    this.auth.authStatus$.subscribe(status => {
+      this.isLoggedIn = status;
+      if (status) {
+        const userData = localStorage.getItem('user_data');
+        this.user = userData ? JSON.parse(userData) : null;
+      } else {
+        this.user = null;
+      }
+    });
 
-  constructor() {
-    if (this.auth.isLoggedIn()) {
-      this.auth.getUser().subscribe({
-        next: (data) => this.user = data,
-        error: () => this.user = null
-      });
-    }
-
-    // subscribe to cart count updates
     this.cartService.count$.subscribe((c) => this.cartCount = c);
   }
 
-  // 3. Добавьте метод logout
-  logout() {
-    this.auth.logOut();
-    this.user = null;
-    window.location.reload(); // Перезагружаем для сброса состояния
+  // Используем уже загруженный this.user, это быстрее и правильнее
+  get userName(): string {
+    if (!this.user) return 'User';
+    
+    // Если есть firstName и lastName
+    if (this.user.firstName && this.user.lastName) {
+      return `${this.user.firstName} ${this.user.lastName}`;
+    }
+    
+    // Fallback на name или email
+    return this.user.name || this.user.email || 'User';
   }
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
+  logout() { this.auth.logOut(); }
+  toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
 }

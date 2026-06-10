@@ -110,6 +110,7 @@
   display: none;
   opacity: 0;
   transition: all 0.25s ease;
+  z-index: 1001;
 }
 
 .dropdown-content a {
@@ -257,7 +258,7 @@
 }
 
 /* Медиа запросы для мобильных */
-@media (max-width: 950px) {
+@media (max-width: 1080px) {
   .custom-header { overflow: visible; }
   
   .header-container { width: 100%; display: flex; gap: 20px; padding: 0 15px; }
@@ -313,9 +314,6 @@
   }
   .menu-overlay.active { display: block; }
 
-  .auth-group{
-    display: none;
-  }
 
   .login-nav-link{
     max-width: 150px;
@@ -333,6 +331,7 @@
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(233, 156, 85, 0.2);
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .btn-reservation:hover {
@@ -343,4 +342,82 @@
 
 
 /* /========PROFILE===========/ */
+
+.auth-area {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* расстояние между email и кнопкой */
+}
+
+/* Красивое оформление email */
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  padding: 5px 12px;
+  background: #f8f8f8;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+/* Стилизация кнопки Logout */
+.login-nav-link {
+  background-color: #ff4d4d; /* Красный цвет */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 25px; /* Скругленная кнопка */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Плавное появление при наведении */
+}
+
+/* Эффект при наведении */
+.login-nav-link:hover {
+  background-color: #e60000;
+  box-shadow: 0 4px 8px rgba(255, 77, 77, 0.3);
+}
+
+.divider {
+  width: 80%; /* Полоска чуть короче ширины меню */
+  height: 1px;
+  background-color: #e0e0e0; /* Светло-серый цвет */
+  margin: 15px auto; /* Отступы сверху/снизу и центрирование */
+}
+
+.user-email-text {
+  font-size: 14px;
+  color: #3d2514;
+  font-weight: 600;
+  padding: 10px 0;
+  display: block; /* Растягиваем на всю ширину */
+}
+
+.auth-group{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+
+@media (max-width: 991px) {
+  /* Скрываем кнопки Sign In/Sign Up и Auth-area в основном хедере */
+  .header-actions .nav-link:not(.cart-wrapper), 
+  .header-actions .btn-reservation,
+  .header-actions .auth-area {
+    display: none;
+  }
+}
+
+/* На случай, если кнопка Logout или email мешаются на средних экранах */
+@media (max-width: 768px) {
+  .header-actions .auth-area {
+    display: none;
+  }
+}
+
+
+
 
